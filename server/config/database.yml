@@ -86,18 +86,34 @@
 #   password: <%= ENV['LUKE_ELDRIDGE_API_DATABASE_PASSWORD'] %>
 
 # default config for docker from https://docs.docker.com/compose/rails/
+# default: &default
+#   adapter: postgresql
+#   encoding: unicode
+#   host: db
+#   username: postgres
+#   password: password
+#   pool: 5
+
+# development:
+#   <<: *default
+#   database: luke_eldridge_api_development
+
+# test:
+#   <<: *default
+#   database: luke_eldridge_api_test
+
 default: &default
-  adapter: postgresql
   encoding: unicode
-  host: db
-  username: postgres
-  password: password
   pool: 5
 
 development:
   <<: *default
-  database: luke_eldridge_api_development
+  url: <%= ENV['DATABASE_URL'] %>
+  password: password
 
 test:
   <<: *default
   database: luke_eldridge_api_test
+
+production:
+  url: <%= ENV['DATABASE_URL'] %>
