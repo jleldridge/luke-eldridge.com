@@ -15,5 +15,7 @@ services:
       - .:/luke-eldridge-api
     ports:
       - "3000:3000"
+    environment:
+      DATABASE_URL: postgresql://postgres@db/luke_eldridge_api_development
     depends_on:
       - db
