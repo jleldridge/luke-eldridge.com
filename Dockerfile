@@ -9,4 +9,5 @@ RUN yarn install
 RUN yarn build
 
 FROM nginx
+EXPOSE 80
 COPY --from=website-builder /website/dist /usr/share/nginx/html
