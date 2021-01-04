@@ -12,4 +12,4 @@ FROM nginx
 COPY ./.docker/nginx/default.conf /etc/nginx/templates/default.conf.template
 COPY --from=website-builder /website/dist /usr/share/nginx/html
 
-CMD ["nginx -g 'daemon off;'"]
+CMD ["nginx", "-g", "daemon off;"]
