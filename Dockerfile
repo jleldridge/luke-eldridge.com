@@ -4,7 +4,6 @@ RUN apt-get update \
 
 WORKDIR /website
 COPY ./website ./
-
 RUN yarn install
 RUN yarn build
 
