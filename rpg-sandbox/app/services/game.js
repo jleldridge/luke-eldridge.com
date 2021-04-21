@@ -7,11 +7,15 @@ export default class GameService extends Service {
     this.draw();
   }
 
+  start() {
+    this.gameLoop();
+  }
+
   update() {
-    
+    // console.log("updating");
   }
 
   draw() {
-
+    // console.log("drawing");
   }
 }
