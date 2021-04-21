@@ -15,6 +15,7 @@ export default class GameService extends Service {
   }
 
   pause() {
+    console.log(this.entities);
     window.cancelAnimationFrame(this.animReq);
   }
 
