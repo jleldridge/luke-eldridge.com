@@ -5,6 +5,6 @@ export default class IndexPlayRoute extends Route {
   @service game;
 
   model() {
-    this.game.start();
+    this.game.play();
   }
 }

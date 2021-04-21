@@ -3,19 +3,21 @@ import Service from '@ember/service';
 export default class GameService extends Service {
   entities = [];
 
+  initGame() {
+    this.entities = [{x: 0, y: 0, dx: 1, dy: 1}];
+  }
+
   gameLoop() {
     this.animReq = window.requestAnimationFrame(this.gameLoop.bind(this));
     this.update();
     this.draw();
   }
 
-  start() {
-    this.entities = [{x: 0, y: 0, dx: 1, dy: 1}];
+  play() {
     this.gameLoop();
   }
 
   pause() {
-    console.log(this.entities);
     window.cancelAnimationFrame(this.animReq);
   }
 
