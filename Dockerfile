@@ -15,6 +15,6 @@ RUN yarn build
 FROM nginx
 COPY ./.docker/nginx/default.conf /etc/nginx/templates/default.conf.template
 COPY --from=website-builder /website/dist /usr/share/nginx/html/website
-COPY --from=website-builder /rpg-sandbox/dist /usr/share/nginx/rpg-sandbox
+COPY --from=website-builder /rpg-sandbox/dist /usr/share/nginx/html/rpg-sandbox
 
 CMD ["nginx", "-g", "daemon off;"]
