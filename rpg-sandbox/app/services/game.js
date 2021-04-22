@@ -8,7 +8,9 @@ export default class GameService extends Service {
 
   initGame() {
     this.keyboardInput.attach();
-    this.entities = [{x: 0, y: 0, dx: 1, dy: 1}];
+    for (let i = 0; i < 20; i++) {
+      this.entities.push({x: Math.random() * 700, y: Math.random() * 500, dx: 1, dy: 1})
+    }
   }
 
   gameLoop() {
