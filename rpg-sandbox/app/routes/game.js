@@ -1,10 +1,10 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
-export default class IndexPauseRoute extends Route {
+export default class GameRoute extends Route {
   @service game;
 
   model() {
-    this.game.pause();
+    this.game.initGame()
   }
 }
