@@ -4,7 +4,7 @@ export default class GameService extends Service {
   @service keyboardInput;
 
   entities = [];
-  player = {x: 0, y: 0, dx: 0, dy: 0};
+  player = {x: 100, y: 100, dx: 0, dy: 0};
 
   initGame() {
     this.keyboardInput.attach();
@@ -29,12 +29,10 @@ export default class GameService extends Service {
     if (!this.canvas) this.canvas = window.document.getElementById('game-canvas');
     if (!this.canvas) return;
 
+    // move everything
     for (let e of this.entities) {
       e.x += e.dx;
       e.y += e.dy;
-
-      if (e.x + 20 >= 800 || e.x <= 0) e.dx *= -1;
-      if (e.y + 20 >= 600 || e.y <= 0) e.dy *= -1;
     }
 
     this.player.dx = 0;
@@ -47,6 +45,27 @@ export default class GameService extends Service {
 
     this.player.x += this.player.dx;
     this.player.y += this.player.dy;
+
+    if (this.player.x + 20 > 800) this.player.x = 800 - 20;
+    if (this.player.y + 20 > 600) this.player.y = 600 - 20;
+    if (this.player.x < 0) this.player.x = 0;
+    if (this.player.y < 0) this.player.y = 0;
+
+    // resolve collisions
+    for (let e of this.entities) {
+      if (e.x + 20 >= 800 || e.x <= 0) e.dx *= -1;
+      if (e.y + 20 >= 600 || e.y <= 0) e.dy *= -1;
+
+      let hcollision = false;
+      let vcollision = false;
+      if (Math.abs(e.x - this.player.x) <= 20) hcollision = true;
+      if (Math.abs(e.y - this.player.y) <= 20) vcollision = true;
+
+      if (hcollision && vcollision) {
+        e.dx *= -1;
+        e.dy *= -1;
+      }
+    }
   }
 
   draw() {
