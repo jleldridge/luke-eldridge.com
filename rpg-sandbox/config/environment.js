@@ -4,7 +4,7 @@ module.exports = function (environment) {
   let ENV = {
     modulePrefix: 'rpg-sandbox',
     environment,
-    rootURL: '/',
+    rootURL: '/rpg-sandbox/',
     locationType: 'auto',
     EmberENV: {
       FEATURES: {
