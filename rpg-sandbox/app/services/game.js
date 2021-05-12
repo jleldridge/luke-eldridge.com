@@ -28,8 +28,9 @@ export default class GameService extends Service {
   }
 
   update() {
-    if (!this.canvas) this.canvas = window.document.getElementById('game-canvas');
-    if (!this.canvas) return;
+    if (!this.canvas && !(this.canvas = window.document.getElementById('game-canvas'))) {
+      return;
+    }
 
     // move everything
     for (let e of this.entities) {

@@ -5,6 +5,6 @@ export default class GameRoute extends Route {
   @service game;
 
   model() {
-    this.game.initGame()
+    this.game.initGame();
   }
 }
