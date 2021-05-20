@@ -1,15 +1,16 @@
 import Service, { inject as service } from '@ember/service';
+import Entity from '../game-models/entity';
 
 export default class GameService extends Service {
   @service keyboardInput;
 
   entities = [];
-  player = {x: 100, y: 100, dx: 0, dy: 0};
+  player = new Entity(100, 100, 0, 0);
 
   initGame() {
     this.keyboardInput.attach();
     for (let i = 0; i < 20; i++) {
-      this.entities.push({x: Math.random() * 700, y: Math.random() * 500, dx: 1, dy: 1})
+      this.entities.push(new Entity(Math.random() * 700, Math.random() * 500, 1, 1))
     }
   }
 
