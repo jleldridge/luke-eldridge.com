@@ -1,25 +1,20 @@
-{{page-title "luke-eldridge.com"}}
+{{page-title 'luke-eldridge.com'}}
 
-<nav class="navbar navbar-expand-lg navbar-dark navbar-fixed-top">
-  <ul class="navbar-nav mr-auto flex-row">
-    <img
-      class="mr-3"
-      height="40px"
-      src="assets/me.png"
-      alt="luke"
-    />
-    <div class="navbar-brand">Luke Eldridge</div>
-    <li class="nav-item mr-3">
-      <LinkTo @route="index" class="nav-link">Home</LinkTo>
+<nav class='navbar navbar-expand-lg navbar-dark navbar-fixed-top'>
+  <ul class='navbar-nav mr-auto flex-row'>
+    <img class='mr-3' height='40px' src='assets/me.png' alt='luke' />
+    <div class='navbar-brand'>Luke Eldridge</div>
+    <li class='nav-item mr-3'>
+      <LinkTo @route='index' class='nav-link'>Home</LinkTo>
     </li>
-    <li class="nav-item mr-3">
-      <LinkTo @route="projects" class="nav-link">Projects</LinkTo>
+    <li class='nav-item mr-3'>
+      <LinkTo @route='projects' class='nav-link'>Projects</LinkTo>
     </li>
-    <li class="nav-item mr-3">
+    {{! <li class="nav-item mr-3">
       <LinkTo @route="blog" class="nav-link">Blog</LinkTo>
-    </li>
+    </li> }}
   </ul>
 </nav>
-<div class="text-light p-3">
+<div class='text-light p-3'>
   {{outlet}}
 </div>
