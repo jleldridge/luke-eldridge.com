@@ -2,8 +2,12 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  background-color: #3d3d3d;
+  background-color: #343a40;
   color: white;
+}
+
+.page {
+  margin: 20px;
 }
 
 nav {
@@ -13,5 +17,16 @@ nav {
     display: inline-block;
     margin-left: 5px;
     margin-right: 5px;
+    color: white;
+    text-decoration: none;
+
+    .active {
+      font-weight: bold;
+    }
   }
+}
+
+a {
+  color: #007bff;
+  text-decoration: none;
 }
