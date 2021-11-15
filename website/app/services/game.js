@@ -8,6 +8,7 @@ export default class GameService extends Service {
   player = new Entity(0, 0, 0, 0);
   playerWidth = 64;
   playerHeight = 64;
+  gravity = 0.5;
 
   initGame() {
     this.keyboardInput.attach();
@@ -54,21 +55,30 @@ export default class GameService extends Service {
     }
 
     this.player.dx = 0;
-    this.player.dy = 0;
 
     this.player.dx += this.keyboardInput.keys['a'] ? -3 : 0;
     this.player.dx += this.keyboardInput.keys['d'] ? 3 : 0;
-    this.player.dy += this.keyboardInput.keys['w'] ? -3 : 0;
-    this.player.dy += this.keyboardInput.keys['s'] ? 3 : 0;
+    if (
+      this.keyboardInput.keys['w'] &&
+      this.player.dy == 0 &&
+      this.player.y + this.playerHeight >= this.canvas.height
+    ) {
+      this.player.dy = -8;
+    }
 
     this.player.x += this.player.dx;
     this.player.y += this.player.dy;
 
+    // handle gravity
+    if (this.player.y + this.playerHeight >= this.canvas.height) {
+      this.player.y = this.canvas.height - this.playerHeight;
+      this.player.dy = 0;
+    } else {
+      this.player.dy += this.gravity;
+    }
+
     if (this.player.x + this.playerWidth > this.canvas.width) {
       this.player.x = this.canvas.width - this.playerWidth;
-    }
-    if (this.player.y + this.playerHeight > this.canvas.height) {
-      this.player.y = this.canvas.height - this.playerHeight;
     }
     if (this.player.x < 0) this.player.x = 0;
     if (this.player.y < 0) this.player.y = 0;
