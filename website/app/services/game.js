@@ -5,7 +5,7 @@ export default class GameService extends Service {
   @service keyboardInput;
 
   entities = [];
-  player = new Entity(10, 10, 0, 0);
+  player = new Entity(60, 10, 0, 0);
   playerWidth = 64;
   playerHeight = 64;
 
@@ -80,10 +80,16 @@ export default class GameService extends Service {
 
       let hcollision = false;
       let vcollision = false;
-      if (Math.abs(e.x - this.player.x) <= (20 + this.playerWidth) / 2) {
+      if (
+        (this.player.x > e.x && this.player.x - e.x <= 20) ||
+        (e.x > this.player.x && e.x - this.player.x <= this.playerWidth)
+      ) {
         hcollision = true;
       }
-      if (Math.abs(e.y - this.player.y) <= (20 + this.playerHeight) / 2) {
+      if (
+        (this.player.y > e.y && this.player.y - e.y <= 20) ||
+        (e.y > this.player.y && e.y - this.player.y <= this.playerHeight)
+      ) {
         vcollision = true;
       }
 
@@ -106,6 +112,13 @@ export default class GameService extends Service {
     }
 
     ctx.fillStyle = 'green';
+    // bounding rect for debugging
+    // ctx.fillRect(
+    //   this.player.x,
+    //   this.player.y,
+    //   this.playerWidth,
+    //   this.playerHeight
+    // );
     ctx.drawImage(this.playerImage, this.player.x, this.player.y);
   }
 }
