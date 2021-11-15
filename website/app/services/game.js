@@ -6,6 +6,8 @@ export default class GameService extends Service {
 
   entities = [];
   player = new Entity(10, 10, 0, 0);
+  playerWidth = 64;
+  playerHeight = 64;
 
   initGame() {
     this.keyboardInput.attach();
@@ -62,11 +64,11 @@ export default class GameService extends Service {
     this.player.x += this.player.dx;
     this.player.y += this.player.dy;
 
-    if (this.player.x + 20 > this.canvas.width) {
-      this.player.x = this.canvas.width - 20;
+    if (this.player.x + this.playerWidth > this.canvas.width) {
+      this.player.x = this.canvas.width - this.playerWidth;
     }
-    if (this.player.y + 20 > this.canvas.height) {
-      this.player.y = this.canvas.height - 20;
+    if (this.player.y + this.playerHeight > this.canvas.height) {
+      this.player.y = this.canvas.height - this.playerHeight;
     }
     if (this.player.x < 0) this.player.x = 0;
     if (this.player.y < 0) this.player.y = 0;
@@ -78,8 +80,12 @@ export default class GameService extends Service {
 
       let hcollision = false;
       let vcollision = false;
-      if (Math.abs(e.x - this.player.x) <= 20) hcollision = true;
-      if (Math.abs(e.y - this.player.y) <= 20) vcollision = true;
+      if (Math.abs(e.x - this.player.x) <= (20 + this.playerWidth) / 2) {
+        hcollision = true;
+      }
+      if (Math.abs(e.y - this.player.y) <= (20 + this.playerHeight) / 2) {
+        vcollision = true;
+      }
 
       if (hcollision && vcollision) {
         e.dx *= -1;
@@ -100,7 +106,6 @@ export default class GameService extends Service {
     }
 
     ctx.fillStyle = 'green';
-    // ctx.fillRect(this.player.x, this.player.y, 20, 20);
     ctx.drawImage(this.playerImage, this.player.x, this.player.y);
   }
 }
