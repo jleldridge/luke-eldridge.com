@@ -19,7 +19,6 @@ export default class GameService extends Service {
     }
 
     this.canvas = window.document.getElementById('game-canvas');
-    this.canvas.style.zIndex = 10;
     this.canvas.width = window.innerWidth;
 
     this.playerImage = window.document.getElementById('luke-image');

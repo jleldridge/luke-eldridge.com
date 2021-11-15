@@ -1,7 +1,11 @@
 {{page-title 'luke-eldridge.com'}}
 
 <div class='app'>
-  <canvas height='100' width='800' id='game-canvas'></canvas>
+  <canvas
+    height='100'
+    id='game-canvas'
+    class='{{if this.gameRunning 'game-running' ''}}'
+  ></canvas>
   <nav>
     <button
       class='nav-item {{if this.gameRunning 'hidden' ''}}'

@@ -25,9 +25,9 @@ nav {
     margin-right: 5px;
     color: white;
     text-decoration: none;
-  }
-  .active {
-    font-weight: bold;
+    &.active {
+      font-weight: bold;
+    }
   }
 }
 
@@ -51,4 +51,8 @@ a {
   position: absolute;
   background-color: transparent;
   z-index: -1;
+
+  &.game-running {
+    z-index: 10;
+  }
 }
