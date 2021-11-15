@@ -5,7 +5,7 @@ export default class GameService extends Service {
   @service keyboardInput;
 
   entities = [];
-  player = new Entity(60, 10, 0, 0);
+  player = new Entity(0, 0, 0, 0);
   playerWidth = 64;
   playerHeight = 64;
 

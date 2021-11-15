@@ -40,8 +40,11 @@ a {
   background-color: transparent;
   color: transparent;
   border-width: 0px;
-  height: 40px;
   padding: 0px;
+
+  &.hidden {
+    visibility: hidden;
+  }
 }
 
 #game-canvas {
