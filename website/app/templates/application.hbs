@@ -3,8 +3,12 @@
 <nav>
   <img class='nav-item' height='40px' src='assets/me.png' alt='luke' />
   <h1 class='nav-item'>Luke Eldridge</h1>
-  <LinkTo class='nav-item' @route='index'>Home</LinkTo>
-  <LinkTo class='nav-item' @route='projects'>Projects</LinkTo>
+  <LinkTo class='nav-item' @route='index' @current-when='index'>Home</LinkTo>
+  <LinkTo
+    class='nav-item'
+    @route='projects'
+    @current-when='projects'
+  >Projects</LinkTo>
   {{! <LinkTo @route="blog" class="nav-link">Blog</LinkTo> }}
 </nav>
 <div class='page'>
