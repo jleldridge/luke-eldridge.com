@@ -1,8 +1,11 @@
 {{page-title 'luke-eldridge.com'}}
 
 <div class='app'>
+  <canvas height='100' width='800' id='game-canvas'></canvas>
   <nav>
-    <img class='nav-item' height='40px' src='assets/me.png' alt='luke' />
+    <button class='nav-item' id='game-button' {{on 'click' this.startGame}}>
+      <img id='luke-image' height='40px' src='assets/me.png' alt='luke' />
+    </button>
     <h1 class='nav-item'>Luke Eldridge</h1>
     <LinkTo class='nav-item' @route='index' @current-when='index'>Home</LinkTo>
     <LinkTo

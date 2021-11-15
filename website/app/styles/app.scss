@@ -35,3 +35,17 @@ a {
   color: #007bff;
   text-decoration: none;
 }
+
+#game-button {
+  background-color: transparent;
+  color: transparent;
+  border-width: 0px;
+  height: 40px;
+  padding: 0px;
+}
+
+#game-canvas {
+  position: absolute;
+  background-color: blue;
+  z-index: -1;
+}
