@@ -4,13 +4,13 @@ import Entity from '../game-models/entity';
 export default class GameService extends Service {
   @service keyboardInput;
 
-  entities = [];
-  player = new Entity(0, 0, 0, 0);
-  playerWidth = 64;
-  playerHeight = 64;
-  gravity = 0.5;
-
   initGame() {
+    this.entities = [];
+    this.player = new Entity(0, 0, 0, 0);
+    this.playerWidth = 64;
+    this.playerHeight = 64;
+    this.gravity = 0.5;
+
     this.keyboardInput.attach();
     for (let i = 0; i < 20; i++) {
       this.entities.push(

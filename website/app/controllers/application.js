@@ -13,4 +13,11 @@ export default class ApplicationController extends Controller {
     this.game.initGame();
     this.gameRunning = true;
   }
+
+  @action
+  stopGame() {
+    console.log('stopping game...');
+    this.game.pause();
+    this.gameRunning = false;
+  }
 }

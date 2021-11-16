@@ -1,11 +1,13 @@
 {{page-title 'luke-eldridge.com'}}
 
 <div class='app'>
-  <canvas
-    height='100'
-    id='game-canvas'
-    class='{{if this.gameRunning 'game-running' ''}}'
-  ></canvas>
+  <div id='game-container' class={{if this.gameRunning 'game-running' ''}}>
+    <canvas height='100' id='game-canvas'>
+    </canvas>
+    <button id='exit-game-button' {{on 'click' this.stopGame}}>
+      Exit Game
+    </button>
+  </div>
   <nav>
     <button
       class='nav-item {{if this.gameRunning 'hidden' ''}}'
@@ -21,7 +23,6 @@
       @route='projects'
       @current-when='projects'
     >Projects</LinkTo>
-    {{! <LinkTo @route="blog" class="nav-link">Blog</LinkTo> }}
   </nav>
   <div class='page'>
     {{outlet}}
