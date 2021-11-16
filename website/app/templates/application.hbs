@@ -4,14 +4,19 @@
   <div id='game-container' class={{if this.gameRunning 'game-running' ''}}>
     <canvas height='100' id='game-canvas'>
     </canvas>
-    <button id='exit-game-button' {{on 'click' this.stopGame}}>
-      Exit Game
-    </button>
+    <div id='in-game-buttons'>
+      <div class='horizontal-stack'>
+        <button id='exit-game-button' {{on 'click' this.stopGame}}>
+          Exit Game
+        </button>
+        <p id='game-controls-text'>a: move left, d: move right, w: jump</p>
+      </div>
+    </div>
   </div>
   <nav>
     <button
       class='nav-item {{if this.gameRunning 'hidden' ''}}'
-      id='game-button'
+      id='start-game-button'
       {{on 'click' this.startGame}}
     >
       <img id='luke-image' src='assets/me.png' alt='luke' />
