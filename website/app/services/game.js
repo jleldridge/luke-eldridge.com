@@ -6,16 +6,16 @@ export default class GameService extends Service {
 
   initGame() {
     this.entities = [];
-    this.player = new Entity(0, 0, 0, 0);
-    this.playerWidth = 64;
-    this.playerHeight = 64;
+    this.player = new Entity(0, 0, 64, 64);
     this.gravity = 0.5;
 
     this.keyboardInput.attach();
     for (let i = 0; i < 20; i++) {
       this.entities.push(
-        new Entity(Math.random() * 10, Math.random() * 10, 1, 1)
+        new Entity(Math.random() * 300 + 100, Math.random() * 50, 20, 20)
       );
+      this.entities[i].dx = 3;
+      this.entities[i].dy = 3;
     }
 
     this.canvas = window.document.getElementById('game-canvas');
@@ -60,7 +60,7 @@ export default class GameService extends Service {
     if (
       this.keyboardInput.keys['w'] &&
       this.player.dy == 0 &&
-      this.player.y + this.playerHeight >= this.canvas.height
+      this.player.y + this.player.height >= this.canvas.height
     ) {
       this.player.dy = -8;
     }
@@ -69,35 +69,35 @@ export default class GameService extends Service {
     this.player.y += this.player.dy;
 
     // handle gravity
-    if (this.player.y + this.playerHeight >= this.canvas.height) {
-      this.player.y = this.canvas.height - this.playerHeight;
+    if (this.player.y + this.player.height >= this.canvas.height) {
+      this.player.y = this.canvas.height - this.player.height;
       this.player.dy = 0;
     } else {
       this.player.dy += this.gravity;
     }
 
-    if (this.player.x + this.playerWidth > this.canvas.width) {
-      this.player.x = this.canvas.width - this.playerWidth;
+    if (this.player.x + this.player.width > this.canvas.width) {
+      this.player.x = this.canvas.width - this.player.width;
     }
     if (this.player.x < 0) this.player.x = 0;
     if (this.player.y < 0) this.player.y = 0;
 
     // resolve collisions
     for (let e of this.entities) {
-      if (e.x + 20 >= this.canvas.width || e.x <= 0) e.dx *= -1;
-      if (e.y + 20 >= this.canvas.height || e.y <= 0) e.dy *= -1;
+      if (e.x + e.width >= this.canvas.width || e.x <= 0) e.dx *= -1;
+      if (e.y + e.height >= this.canvas.height || e.y <= 0) e.dy *= -1;
 
       let hcollision = false;
       let vcollision = false;
       if (
-        (this.player.x > e.x && this.player.x - e.x <= 20) ||
-        (e.x > this.player.x && e.x - this.player.x <= this.playerWidth)
+        (this.player.x > e.x && this.player.x - e.x <= e.width) ||
+        (e.x > this.player.x && e.x - this.player.x <= this.player.width)
       ) {
         hcollision = true;
       }
       if (
-        (this.player.y > e.y && this.player.y - e.y <= 20) ||
-        (e.y > this.player.y && e.y - this.player.y <= this.playerHeight)
+        (this.player.y > e.y && this.player.y - e.y <= e.height) ||
+        (e.y > this.player.y && e.y - this.player.y <= this.player.height)
       ) {
         vcollision = true;
       }
@@ -117,7 +117,7 @@ export default class GameService extends Service {
 
     for (let e of this.entities) {
       ctx.fillStyle = 'orange';
-      ctx.fillRect(e.x, e.y, 20, 20);
+      ctx.fillRect(e.x, e.y, e.width, e.height);
     }
 
     ctx.fillStyle = 'green';
@@ -125,8 +125,8 @@ export default class GameService extends Service {
     // ctx.fillRect(
     //   this.player.x,
     //   this.player.y,
-    //   this.playerWidth,
-    //   this.playerHeight
+    //   this.player.width,
+    //   this.player.height
     // );
     ctx.drawImage(this.playerImage, this.player.x, this.player.y);
   }
