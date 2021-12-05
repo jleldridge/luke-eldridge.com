@@ -19,7 +19,7 @@ export default class GameService extends Service {
     }
 
     this.canvas = window.document.getElementById('game-canvas');
-    this.canvas.width = window.innerWidth;
+    this.canvas.width = Math.min(window.innerWidth, 1200);
 
     this.playerImage = window.document.getElementById('luke-image');
     this.gameLoop();
