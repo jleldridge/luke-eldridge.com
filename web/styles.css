@@ -43,7 +43,7 @@ a:hover {
 
 /* basic screen module */
 
-.piece {
+.screen {
   display: block;
   height: 100%;
   left: 0;
@@ -82,8 +82,6 @@ a:hover {
 /* screen output */
 
 .output {
-  /* animation: crt-output 10ms infinite;  */
-  /* background-color: #031e11; */
   background-color: transparent;
   overflow-y: auto;
   scrollbar-color: green black;
@@ -180,6 +178,17 @@ a:hover {
 
 .icon-information:before {
 	content: "\e626";
+}
+
+@keyframes cursor-blink {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+
+}
+
+.blinking-cursor {
+  animation: cursor-blink 1.5s infinite
 }
 
 /* noise texture */

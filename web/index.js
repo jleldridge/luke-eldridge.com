@@ -9,10 +9,14 @@ let tagIndex = 0;
 let currentTag = null;
 let tagTextContent = null;
 let currentContainer = null;
+let skipAnimation = false;
 
 function animateText(timestamp) {
   let done = tagIndex >= tags.length;
-  if (done) return;
+  if (done || skipAnimation) {
+    skipAnimation = false;
+    return;
+  }
   
   // get the next tag
   if (currentTag == null) {
@@ -22,7 +26,6 @@ function animateText(timestamp) {
     currentContainer = document.createElement(currentTag.tagName);
     let attributes = currentTag.attributes;
     for (const kvp of attributes) {
-      console.log(kvp.nodeName, kvp.nodeValue);
       currentContainer.setAttribute(kvp.nodeName, kvp.nodeValue);
     }
     animatedContainer.appendChild(currentContainer);
@@ -50,5 +53,14 @@ function animateText(timestamp) {
   }
   requestAnimationFrame(animateText);
 }
+
+function skip() {
+  animatedContainer.classList.add('hidden');
+  animatedContent.classList.remove('hidden');
+  skipAnimation = true;
+}
+
+window.addEventListener('keydown', skip);
+window.addEventListener('click', skip);
 
 requestAnimationFrame(animateText);
