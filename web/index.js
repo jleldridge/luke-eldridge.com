@@ -1,7 +1,7 @@
 const animatedContent = document.getElementById('animated-content');
 const animatedContainer = document.getElementById('animated-container')
 const tags = animatedContent.children;
-const typeDelay = 100; // milliseconds between new letters appearing
+const typeDelay = 75; // milliseconds between new letters appearing
 
 let lastTimestamp = null;
 let currentLetterIndex = 0
