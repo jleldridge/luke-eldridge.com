@@ -1,5 +1,6 @@
 const animatedContent = document.getElementById('animated-content');
 const animatedContainer = document.getElementById('animated-container')
+const inputLine = document.getElementById('input-line');
 const tags = animatedContent.children;
 const typeDelay = 75; // milliseconds between new letters appearing
 
@@ -15,6 +16,9 @@ function animateText(timestamp) {
   let done = tagIndex >= tags.length;
   if (done || skipAnimation) {
     skipAnimation = false;
+    animatedContainer.classList.add('hidden');
+    animatedContent.classList.remove('hidden');
+    inputLine.classList.remove('hidden');
     return;
   }
   
@@ -55,8 +59,6 @@ function animateText(timestamp) {
 }
 
 function skip() {
-  animatedContainer.classList.add('hidden');
-  animatedContent.classList.remove('hidden');
   skipAnimation = true;
 }
 
