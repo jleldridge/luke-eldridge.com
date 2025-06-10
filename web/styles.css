@@ -37,6 +37,10 @@ a:hover {
   color: #031e11;
 }
 
+.hidden {
+  display: none;
+}
+
 /* basic screen module */
 
 .piece {
