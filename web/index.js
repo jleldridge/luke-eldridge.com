@@ -13,8 +13,9 @@ let currentTag = null;
 let tagTextContent = null;
 let currentContainer = null;
 let skipAnimation = false;
+let hoveredCommand = "";
 
-function animateText(timestamp) {
+function animateInitPageContent(timestamp) {
   let done = tagIndex >= tags.length;
   if (done || skipAnimation) {
     skipAnimation = false;
@@ -46,7 +47,7 @@ function animateText(timestamp) {
     // clear currentTag for next line
     currentTag = null;
     tagIndex += 1;
-    requestAnimationFrame(animateText);
+    requestAnimationFrame(animateInitPageContent);
     return;
   }
 
@@ -58,11 +59,7 @@ function animateText(timestamp) {
     currentLetterIndex++;
     lastTimestamp = timestamp;
   }
-  requestAnimationFrame(animateText);
-}
-
-function onClick() {
-  skip();
+  requestAnimationFrame(animateInitPageContent);
 }
 
 function skip() {
@@ -80,10 +77,32 @@ function logCommand(commandText) {
 }
 
 function prepCommand(commandText) {
-  inputLineText.textContent = commandText;
+  hoveredCommand = commandText;
+  requestAnimationFrame((timestamp) => this.animateCommand(timestamp, null, 0, hoveredCommand));
+}
+
+function animateCommand(timestamp, lastTimestamp, index, processingCommand) {
+  if (hoveredCommand == "" || hoveredCommand != processingCommand) {
+    inputLineText.textContent = "";
+    return;
+  }
+
+  let done = index >= hoveredCommand.length;
+  if (done) return;
+
+  if (lastTimestamp == null) lastTimestamp = timestamp;
+
+  delta = timestamp - lastTimestamp;
+  if (delta >= typeDelay) {
+    inputLineText.textContent += hoveredCommand[index];
+    index++;
+    lastTimestamp = timestamp;
+  }
+
+  requestAnimationFrame((newTimestamp) => this.animateCommand(newTimestamp, lastTimestamp, index, processingCommand));
 }
 
 window.addEventListener('keydown', skip);
-window.addEventListener('click', onClick);
+window.addEventListener('click', skip);
 
-requestAnimationFrame(animateText);
+requestAnimationFrame(animateInitPageContent);
