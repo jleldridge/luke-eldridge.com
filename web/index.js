@@ -1,8 +1,10 @@
 const animatedContent = document.getElementById('animated-content');
-const animatedContainer = document.getElementById('animated-container')
+const animatedContainer = document.getElementById('animated-container');
+const outputContainer = document.getElementById('output-container');
 const inputLine = document.getElementById('input-line');
+const inputLineText = document.getElementById('input-line-text');
 const tags = animatedContent.children;
-const typeDelay = 75; // milliseconds between new letters appearing
+const typeDelay = 50; // milliseconds between new letters appearing
 
 let lastTimestamp = null;
 let currentLetterIndex = 0
@@ -19,6 +21,7 @@ function animateText(timestamp) {
     animatedContainer.classList.add('hidden');
     animatedContent.classList.remove('hidden');
     inputLine.classList.remove('hidden');
+    inputLineText.focus();
     return;
   }
   
@@ -58,11 +61,47 @@ function animateText(timestamp) {
   requestAnimationFrame(animateText);
 }
 
+function onClick() {
+  skip();
+}
+
 function skip() {
   skipAnimation = true;
 }
 
-window.addEventListener('keydown', skip);
-window.addEventListener('click', skip);
+function onKeyDown(event) {
+  skipAnimation = true;
+  if (event.code == 'Enter') {
+    let commandText = inputLineText.textContent;
+    processCommand(commandText);
+    inputLineText.textContent = "";
+  }
+}
+
+function processCommand(commandText) {
+  let logLine = document.createElement('div');
+  let outputLine = document.createElement('div');
+  logLine.textContent = "> " + commandText;
+  outputContainer.appendChild(logLine);
+
+  let command = commandText.toLowerCase();
+  if (command.includes('github')) {
+    window.open('https://github.com/jleldridge', '_blank');
+    outputLine.textContent = 'Running github...';
+  }
+  else if (command.includes('linkedin')) {
+    window.open('https://www.linkedin.com/in/lukeeldridge27', '_blank');
+    outputLine.textContent = 'Running linkedin...';
+  } else if (command.includes('blog')) {
+    outputLine.textContent = 'Running blog...';
+  } else {
+    outputLine.textContent = `Error: command "${commandText}" not recognized`;
+  }
+
+  outputContainer.appendChild(outputLine);
+}
+
+window.addEventListener('keydown', onKeyDown);
+window.addEventListener('click', onClick);
 
 requestAnimationFrame(animateText);

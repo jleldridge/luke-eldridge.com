@@ -25,16 +25,39 @@ p {
 
 a,
 a:visited {
-  border-bottom: 0.2rem solid #14fdce;
+  /* border-bottom: 0.2rem solid #14fdce; */
   color: #14fdce;
   text-decoration: none;
 }
 
+.navigation-button:active,
+.navigation-button:focus,
+.navigation-button:hover,
 a:active,
 a:focus,
 a:hover {
   background-color: #14fdce;
   color: #031e11;
+}
+
+.navigation-button {
+  margin: 5;
+  display: inline;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  cursor: pointer;
+  background: transparent;
+  color: currentColor;
+  -webkit-appearance: none;
+}
+
+#input-line-text {
+  width: 1px;
+}
+#input-line-text:focus {
+  outline: transparent;
+  caret-color: transparent;
 }
 
 .hidden {
