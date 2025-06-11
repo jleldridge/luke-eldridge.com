@@ -69,39 +69,21 @@ function skip() {
   skipAnimation = true;
 }
 
-function onKeyDown(event) {
-  skipAnimation = true;
-  if (event.code == 'Enter') {
-    let commandText = inputLineText.textContent;
-    processCommand(commandText);
-    inputLineText.textContent = "";
-  }
-}
-
-function processCommand(commandText) {
+function logCommand(commandText) {
   let logLine = document.createElement('div');
   let outputLine = document.createElement('div');
   logLine.textContent = "> " + commandText;
+  outputLine.textContent = `Running ${commandText}`;
+
   outputContainer.appendChild(logLine);
-
-  let command = commandText.toLowerCase();
-  if (command.includes('github')) {
-    window.open('https://github.com/jleldridge', '_blank');
-    outputLine.textContent = 'Running github...';
-  }
-  else if (command.includes('linkedin')) {
-    window.open('https://www.linkedin.com/in/lukeeldridge27', '_blank');
-    outputLine.textContent = 'Running linkedin...';
-  } else if (command.includes('blog')) {
-    outputLine.textContent = 'Running blog...';
-  } else {
-    outputLine.textContent = `Error: command "${commandText}" not recognized`;
-  }
-
   outputContainer.appendChild(outputLine);
 }
 
-window.addEventListener('keydown', onKeyDown);
+function prepCommand(commandText) {
+  inputLineText.textContent = commandText;
+}
+
+window.addEventListener('keydown', skip);
 window.addEventListener('click', onClick);
 
 requestAnimationFrame(animateText);

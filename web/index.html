@@ -11,9 +11,28 @@
           <h2>Software Engineer / Engineering Manager</h2>
           <div>Click or type to choose an option</div>
           <br />
-          <a class="navigation-button" href="https://github.com/jleldridge" target="_blank">[Github]</a>
-          <a class="navigation-button" href="https://www.linkedin.com/in/lukeeldridge27" target="_blank">[Linkedin]</a>
-          <button class="navigation-button" type="button">[Blog]</button>
+          <a class="navigation-button"
+             href="https://github.com/jleldridge"
+             target="_blank"
+             onclick="logCommand('Github')"
+             onmouseenter="prepCommand('Github')"
+             onmouseleave="prepCommand('')">
+            [Github]
+          </a>
+          <a class="navigation-button"
+             href="https://www.linkedin.com/in/lukeeldridge27"
+             target="_blank"
+             onclick="logCommand('Linkedin')"
+             onmouseenter="prepCommand('Linkedin')"
+             onmouseleave="prepCommand('')">
+            [Linkedin]
+          </a>
+          <a class="navigation-button"
+             onclick="logCommand('Blog')"
+             onmouseenter="prepCommand('Blog')"
+             onmouseleave="prepCommand('')">
+            [Blog]
+          </a>
           <br />
           <br />
         </div>
@@ -21,7 +40,7 @@
         <div id="output-container"></div>
         <div id="input-line" class="hidden">
           <span>>&nbsp;</span>
-          <span id="input-line-text" contenteditable="true" spellcheck="false"></span>
+          <span id="input-line-text"></span>
           <span class="blinking-cursor">&block;</span>
         </div>
       </div>
