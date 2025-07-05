@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body class="noisy">
+    <div class="frame">
+      <div class="screen output">
+        <div class="hidden" id="animated-content">
+          <div>Starting up&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;[Press any key to skip]</div>
+          <h1>Jeffrey "Luke" Eldridge</h1>
+          <h2>Software Engineer / Engineering Manager</h2>
+          <div>Click to choose an option</div>
+          <br />
+          <a class="navigation-button"
+             href="https://github.com/jleldridge"
+             target="_blank"
+             onclick="logCommand('Github')"
+             onmouseenter="prepCommand('Github')"
+             onmouseleave="prepCommand('')">
+            [Github]
+          </a>
+          <a class="navigation-button"
+             href="https://www.linkedin.com/in/lukeeldridge27"
+             target="_blank"
+             onclick="logCommand('Linkedin')"
+             onmouseenter="prepCommand('Linkedin')"
+             onmouseleave="prepCommand('')">
+            [Linkedin]
+          </a>
+          <!-- <a class="navigation-button"
+             onclick="logCommand('Blog')"
+             onmouseenter="prepCommand('Blog')"
+             onmouseleave="prepCommand('')">
+            [Blog]
+          </a> -->
+          <br />
+          <br />
+        </div>
+        <div id="animated-container"></div>
+        <div id="output-container"></div>
+        <div id="input-line" class="hidden">
+          <span>>&nbsp;</span>
+          <span id="input-line-text"></span>
+          <span class="blinking-cursor">&block;</span>
+        </div>
+      </div>
+      <div class="screen scanlines noclick"></div>
+      <div class="screen glow noclick"></div>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>
